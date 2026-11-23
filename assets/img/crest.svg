@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240" role="img" aria-label="Crest">
+<defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#e2c27a"/><stop offset="1" stop-color="#8f6a2c"/></linearGradient>
+<linearGradient id="r" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5a0b18"/><stop offset="1" stop-color="#1a0408"/></linearGradient></defs>
+<path d="M100 8 L184 34 V118 C184 176 146 212 100 232 C54 212 16 176 16 118 V34 Z" fill="url(#r)" stroke="url(#g)" stroke-width="6"/>
+<path d="M100 22 L170 44 V118 C170 166 138 196 100 214 C62 196 30 166 30 118 V44 Z" fill="none" stroke="#c9a45c" stroke-opacity=".45" stroke-width="2"/>
+<path d="M62 70 C70 96 84 104 100 104 C116 104 130 96 138 70 C132 92 122 108 112 114 L100 150 L88 114 C78 108 68 92 62 70 Z" fill="url(#g)"/>
+<circle cx="100" cy="124" r="9" fill="#a0142c" stroke="url(#g)" stroke-width="3"/>
+<path d="M100 160 L106 176 L100 196 L94 176 Z" fill="url(#g)"/>
+</svg>

@@ -1,0 +1,4 @@
+Self-hosted font subsets (Latin) used by this site. All are licensed under the SIL Open Font License 1.1 (https://openfontlicense.org).
+- Literata: Copyright The Literata Project Authors (TypeTogether).
+- Inter: Copyright The Inter Project Authors (Rasmus Andersson).
+- Cinzel: Copyright The Cinzel Project Authors (Natanael Gama).

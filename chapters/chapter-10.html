@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self'; font-src 'self'; script-src 'self'; connect-src 'none'; object-src 'none'; base-uri 'self'; form-action 'none'">
+<meta name="referrer" content="no-referrer">
+<title>Chapter 10: Recursion | Demon Lord&#x27;s Apostle</title>
+<meta name="description" content="The training courtyard on the castle&#x27;s east side was two hundred feet of flat black stone, ringed by high walls etched with warding glyphs and…">
+<meta name="author" content="Lucan Dray">
+<meta name="theme-color" content="#a0142c">
+<meta name="rating" content="adult">
+<link rel="canonical" href="https://j9bkv4zct7-crypto.github.io/demon-lords-apostle/chapters/chapter-10.html">
+<meta property="og:site_name" content="Demon Lord&#x27;s Apostle">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Chapter 10: Recursion | Demon Lord&#x27;s Apostle">
+<meta property="og:description" content="The training courtyard on the castle&#x27;s east side was two hundred feet of flat black stone, ringed by high walls etched with warding glyphs and…">
+<meta property="og:url" content="https://j9bkv4zct7-crypto.github.io/demon-lords-apostle/chapters/chapter-10.html">
+<meta property="og:image" content="https://j9bkv4zct7-crypto.github.io/demon-lords-apostle/assets/img/og-card.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Demon Lord's Apostle, Volume 1: The Stolen Hero, by Lucan Dray">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Chapter 10: Recursion | Demon Lord&#x27;s Apostle">
+<meta name="twitter:description" content="The training courtyard on the castle&#x27;s east side was two hundred feet of flat black stone, ringed by high walls etched with warding glyphs and…">
+<meta name="twitter:image" content="https://j9bkv4zct7-crypto.github.io/demon-lords-apostle/assets/img/og-card.jpg">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="../assets/img/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="../assets/img/apple-touch-icon.png">
+<link rel="preload" href="../assets/fonts/literata.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/reader.css">
+<script src="../assets/js/prefs.js"></script>
+</head>
+<body class="page-chapter" data-slug="chapter-10" data-title="Chapter 10: Recursion" data-index="11" data-count="15">
+<a class="skip" href="#text">Skip to text</a>
+<header class="topbar" id="topbar">
+  <a class="brand" href="../index.html" aria-label="Demon Lord's Apostle home"><img src="../assets/img/favicon.svg" alt="" width="22" height="22"><span>Demon Lord's Apostle</span></a>
+  <nav class="topnav" aria-label="Site">
+    <a href="../index.html#contents" class="">Chapters</a>
+    <a href="../characters.html" class="">Characters</a>
+    <a href="../guardians.html" class="">Guardians</a>
+  </nav>
+  <div class="tools">
+    <button class="iconbtn" id="tocBtn" type="button" aria-label="Table of contents" aria-controls="tocDrawer" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h10"/></svg></button>
+    <button class="iconbtn" id="settingsBtn" type="button" aria-label="Reading settings" aria-controls="settingsPanel" aria-expanded="false"><span class="aa">Aa</span></button>
+  </div>
+  <div class="progress" aria-hidden="true"><div class="progress-fill" id="progressFill"></div></div>
+</header>
+<div class="scrim" id="scrim" hidden></div>
+<section class="panel settings" id="settingsPanel" hidden aria-label="Reading settings">
+  <div class="panel-head"><h2>Reading settings</h2><button class="iconbtn" type="button" data-close aria-label="Close settings"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <div class="setting"><span class="label">Theme</span>
+    <div class="seg" role="group" aria-label="Theme">
+      <button type="button" data-set="theme" data-val="dark" class="sw-dark">Dark</button>
+      <button type="button" data-set="theme" data-val="sepia" class="sw-sepia">Sepia</button>
+      <button type="button" data-set="theme" data-val="light" class="sw-light">Light</button>
+    </div></div>
+  <div class="setting"><span class="label">Font</span>
+    <div class="seg" role="group" aria-label="Font">
+      <button type="button" data-set="font" data-val="serif" class="f-serif">Serif</button>
+      <button type="button" data-set="font" data-val="sans" class="f-sans">Sans</button>
+    </div></div>
+  <div class="setting"><span class="label">Text size</span>
+    <div class="stepper" role="group" aria-label="Text size">
+      <button type="button" data-step="size" data-dir="-1" aria-label="Smaller text">A−</button>
+      <output id="sizeOut">19px</output>
+      <button type="button" data-step="size" data-dir="1" aria-label="Larger text">A+</button>
+    </div></div>
+  <div class="setting"><span class="label">Line width</span>
+    <div class="seg" role="group" aria-label="Line width">
+      <button type="button" data-set="width" data-val="narrow">Narrow</button>
+      <button type="button" data-set="width" data-val="medium">Medium</button>
+      <button type="button" data-set="width" data-val="wide">Wide</button>
+    </div></div>
+  <div class="setting"><span class="label">Line spacing</span>
+    <div class="seg" role="group" aria-label="Line spacing">
+      <button type="button" data-set="leading" data-val="compact">Compact</button>
+      <button type="button" data-set="leading" data-val="normal">Normal</button>
+      <button type="button" data-set="leading" data-val="relaxed">Relaxed</button>
+    </div></div>
+  <p class="setting-note">Saved on this device only. Use ← and → to turn chapters.</p>
+  <button type="button" class="linkbtn" id="resetPrefs">Reset to defaults</button>
+</section>
+<section class="panel drawer" id="tocDrawer" hidden aria-label="Table of contents">
+  <div class="panel-head"><h2>Volume 1: The Stolen Hero</h2><button class="iconbtn" type="button" data-close aria-label="Close contents"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+  <ol class="toc toc-compact"><li class="toc-chapter" data-slug="chapter-01"><a href="../chapters/chapter-01.html"><span class="toc-num">Chapter 1</span><span class="toc-title">The Wrong Light</span><span class="toc-meta">3,184 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-02"><a href="../chapters/chapter-02.html"><span class="toc-num">Chapter 2</span><span class="toc-title">Blood in the Courtyard</span><span class="toc-meta">2,980 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-03"><a href="../chapters/chapter-03.html"><span class="toc-num">Chapter 3</span><span class="toc-title">A Kitchen Full of Rumors</span><span class="toc-meta">1,572 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-interlude" data-slug="interlude-1"><a href="../chapters/interlude-1.html"><span class="toc-num">Interlude</span><span class="toc-title">The Empty Seat</span><span class="toc-meta">620 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-04"><a href="../chapters/chapter-04.html"><span class="toc-num">Chapter 4</span><span class="toc-title">The Inner Ring</span><span class="toc-meta">3,263 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-05"><a href="../chapters/chapter-05.html"><span class="toc-num">Chapter 5</span><span class="toc-title">The War Table</span><span class="toc-meta">4,636 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-06"><a href="../chapters/chapter-06.html"><span class="toc-num">Chapter 6</span><span class="toc-title">A Demon, Finally</span><span class="toc-meta">4,429 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-07"><a href="../chapters/chapter-07.html"><span class="toc-num">Chapter 7</span><span class="toc-title">The Road to Harren</span><span class="toc-meta">2,996 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-08"><a href="../chapters/chapter-08.html"><span class="toc-num">Chapter 8</span><span class="toc-title">Thirteen Minutes</span><span class="toc-meta">2,953 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-interlude" data-slug="interlude-2"><a href="../chapters/interlude-2.html"><span class="toc-num">Interlude</span><span class="toc-title">The Report</span><span class="toc-meta">444 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-09"><a href="../chapters/chapter-09.html"><span class="toc-num">Chapter 9</span><span class="toc-title">A Head on the War Table</span><span class="toc-meta">3,009 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-10"><a href="../chapters/chapter-10.html"><span class="toc-num">Chapter 10</span><span class="toc-title">Recursion</span><span class="toc-meta">4,348 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-11"><a href="../chapters/chapter-11.html"><span class="toc-num">Chapter 11</span><span class="toc-title">Prince of the Abyss</span><span class="toc-meta">5,020 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-12"><a href="../chapters/chapter-12.html"><span class="toc-num">Chapter 12</span><span class="toc-title">Twenty-Eight Loops</span><span class="toc-meta">3,220 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-chapter" data-slug="chapter-13"><a href="../chapters/chapter-13.html"><span class="toc-num">Chapter 13</span><span class="toc-title">The Spire Door</span><span class="toc-meta">1,969 words</span><span class="toc-read" aria-hidden="true"></span></a></li>
+<li class="toc-end" data-slug="end"><a href="../end.html"><span class="toc-num">The end</span><span class="toc-title">End of Volume 1</span><span class="toc-meta"></span><span class="toc-read" aria-hidden="true"></span></a></li></ol>
+</section>
+<main class="reader" id="main">
+<div class="chap-hero">
+  <div class="chap-art"><img src="../assets/img/art/sereth.jpg" alt="Character art: Sereth Vaun" width="600" height="800" class="focus-sereth"></div>
+  <div class="chap-head">
+    <p class="kicker">Chapter 10</p>
+    <h1>Recursion</h1>
+    <p class="chap-meta">4,348 words <span class="sep">·</span> about 19 min</p>
+  </div>
+</div>
+<nav class="chapnav chapnav-top" aria-label="Chapter navigation">
+  <a class="btn btn-ghost" href="chapter-09.html" rel="prev" data-nav="prev"><span aria-hidden="true">‹</span> <span class="nav-lbl">Chapter 9</span></a>
+  <a class="btn btn-ghost toc-link" href="../index.html#contents">Contents</a>
+  <a class="btn btn-accent" href="chapter-11.html" rel="next" data-nav="next"><span class="nav-lbl">Chapter 11</span> <span aria-hidden="true">›</span></a>
+</nav>
+<article class="chapter-text" id="text">
+<p>The training courtyard on the castle&#x27;s east side was two hundred feet of flat black stone, ringed by high walls etched with warding glyphs and scarred with gouges and scorch marks from other people&#x27;s practice. Nobody was using it. I stepped into the center.</p>
+<p><em>Now let&#x27;s play.</em></p>
+<p>I held out my right hand, palm open, and pulled energy through the reinforced channels, down my shoulder and forearm and into the cluster nodes in my palm. Dark matter bled from the skin. This time it wasn&#x27;t a tendril or a needle or a barrier. It was a sphere.</p>
+<p>It started as a black bead the size of a marble, hovering half an inch above my palm. I fed it until it was the size of a fist, then a grapefruit.</p>
+<p>Then came the hard part. I told it to rotate.</p>
+<p>The sphere shuddered and its surface rippled like disturbed water. Dark matter wants to expand, to scatter and find targets. Making it hold its shape and spin at the same time took a kind of micro-control I&#x27;d never tried. The mana cost spiked. The thing wobbled lazily, more tumble than spin, and I refined the commands. I tightened the orbits and layered the clusters into concentric rings that spun in alternating directions.</p>
+<p>It caught.</p>
+<p>The counter-rotating layers produced a gyroscopic effect, the same physics that keeps a top upright, and the wobble died. The sphere locked in place above my palm, perfectly round, perfectly stable, and humming. I poured in more. It grew to the size of a human head and its speed doubled. The hum dropped to a bass drone that rattled loose grit across the courtyard floor. The air around it shimmered with no heat behind it, light bending around a mass too dense for its size. Gravitational lensing, the kind I&#x27;d sat through slides about in Hanazawa&#x27;s lecture hall, was happening a foot from my face.</p>
+<p>Cracks spiderwebbed through the stone under my boots. The glyphs on the walls flickered as the sphere began drawing mana from the air itself.</p>
+<p>I held it for fifteen seconds. Once the spin was stable, its own momentum carried part of the load, and it cost less than I&#x27;d feared.</p>
+<p>A compressed, rotating sphere of dark matter: dense, stable, hungry.</p>
+<p>What it would do when I released it could wait. First I wanted it to cost me nothing.</p>
+<p><em>Form. Spin. Cancel.</em> Again.</p>
+<p>The first ten took four or five seconds each. The spin stuttered every time, and each cancellation left stray clusters drifting that I had to call back by hand. By twenty, it was three seconds, and the clusters were remembering their orbits. By thirty, it was two and a half, and a single thought collapsed the sphere inward like water down a drain. Sweat ran off my jaw onto the cracked stone. The red sun crawled across the sky. At fifty I no longer had to impose the spin at all, because the clusters fell into rotation the moment they converged. At seventy I switched to my left hand. The off-hand pathways resisted, but the architecture was built into both arms equally, and within fifteen attempts the left matched the right. Somewhere past ninety I stopped counting.</p>
+<p>I closed my eyes and breathed.</p>
+<p>I thought of it, and the sphere was there above my right palm, spinning and humming. I thought again, and it was gone. One more thought, and it was back in my left hand, rotating perfectly with no delay.</p>
+<p>It was reflex now.</p>
+<hr class="scene-break">
+<p>Next I wanted to know what was in the tank and how fast it refilled. I pulled up the mana line alone: 778 of 1,080. Hours of drills had cost me about twenty-eight percent. I stood perfectly still with no abilities and no manipulation, in a complete rest state, and checked after a minute: 806. After another: 837. That was twenty-eight, then thirty-one. The difference came from the ambient energy drifting in from the castle&#x27;s core and bleeding off the glyphs.</p>
+<p>So I regenerated about thirty a minute at rest. Eighteen hundred an hour. From empty, a full refill would take more than half an hour, and that was in a place as mana-rich as the castle.</p>
+<p>Then I loaded it. I held a spinning sphere for one minute and lost ten, which meant the sphere cost about forty a minute and regeneration covered thirty. Then I ran full combat for one minute, sprinting in the speed configuration with the barrier up and needles pre-formed. That cost forty-nine net.</p>
+<p>That gave me twenty-two minutes of absolute maximum output before I hit empty.</p>
+<p>Harren had taken thirteen. I&#x27;d had margin, but barely.</p>
+<p>That was something to fix. And I knew exactly who to fix it with.</p>
+<hr class="scene-break">
+<p>The lower west tower smelled of cold herbs and old winter, the same as before. Sereth Vaun stood hunched over a crystal lens on a bone mount, studying a slide. Her pale grey skin wavered faintly at its edges, the way a wraith-kin&#x27;s does when only part of her attention is committed to existing.</p>
+<p>She didn&#x27;t look up.</p>
+<p>&quot;Your mana signature preceded you by forty seconds,&quot; she said flatly. &quot;It is considerably louder than the last time you were here. Also structurally different. You have been modifying yourself without supervision again.&quot;</p>
+<p>The black eyes finally lifted. They didn&#x27;t look at me so much as through me, reading the architecture beneath my skin.</p>
+<p>&quot;Level forty-two.&quot; Her thin mouth tightened. &quot;You were level eleven when you left my table. What did you do.&quot;</p>
+<p>It wasn&#x27;t a question. It was a demand. She pulled out a chair and pointed at it.</p>
+<p>&quot;Sit. Talk. Leave nothing out.&quot;</p>
+<p>I gave it to her clinically, which was the only way she&#x27;d want it. I told her how I&#x27;d forced integration from ninety-seven to a hundred percent in the field. I described Battle Mode, the speed build, the defensive layering, and the explosive needles, the Shadow Apes, and Harren from the drop to the decapitation.</p>
+<p>At some point she stopped writing on her crystal tablet.</p>
+<p>&quot;You achieved full integration,&quot; she said slowly, &quot;in the <em>field.</em> Without controlled conditions. Without monitoring. Without anyone managing your vitals.&quot; Her jaw tightened. &quot;You could have liquefied your own circulatory system. I cannot give you the failure rate, because no one has ever been reckless enough to produce the data.&quot;</p>
+<p>She took down a handheld scope, a crystal lens on a bone handle. &quot;Arm.&quot;</p>
+<p>Her cold fingers closed on my wrist. The lens glowed. She moved it up to my shoulder, across my chest, and back down to my hand. Ten seconds. Twenty.</p>
+<p>&quot;Impossible,&quot; she murmured. &quot;Your cluster density has quadrupled. The channels have widened themselves and relined their own walls with reinforced dark matter. That should not happen autonomously.&quot; The black eyes rose to mine. &quot;Your system is evolving on its own. The clusters are no longer just following commands. They optimize independently during rest.&quot;</p>
+<p>She set the scope down and folded her arms. &quot;You came to discuss something. Talk.&quot;</p>
+<p>I gave her the numbers: thirty per minute at rest, seventy-nine raw per minute in full combat, twenty-two minutes to empty, and the clone that ate a third of my pool in eight seconds. Then I gave her the idea I&#x27;d been turning over since the courtyard.</p>
+<p>&quot;Not wider channels. Smarter ones. If I can design a superb algorithm, my cells can replicate that pattern, and the pattern alone pushes my power beyond what my level allows. Then I have a cluster take on a hundred cells running that same algorithm, and the group amplifies. Then that completed group imposes the pattern on another completed group, and they amplify each other. Keep repeating it, groups amplifying groups, and the power goes beyond this realm.&quot;</p>
+<p>The tablet hung forgotten in her fingers. Her black eyes were locked on mine, and it wasn&#x27;t clinical detachment anymore. It was something close to shock.</p>
+<p>&quot;Say that again,&quot; she said. &quot;Slower.&quot;</p>
+<p>I did.</p>
+<p>She walked to a blank crystal board on the wall, picked up a mana-stylus, and began to draw fast: a single dot, then a hundred dots around it, boxes grouping the hundreds, and arrows closing the boxes into feedback loops.</p>
+<p>&quot;Recursive cellular amplification through algorithmic mirroring,&quot; she said. &quot;Each node does not merely carry the pattern. It reinforces every adjacent node&#x27;s execution of it at the same time. The output is not additive. It is multiplicative.&quot; She stepped back and stared at her own diagram. &quot;One hundred per group means each layer multiplies by one hundred. Three layers, a million times base output. Four layers...&quot; She stopped. Her form flickered, involuntarily. &quot;This would break you.&quot;</p>
+<p>She had the scope against my chest before I could answer.</p>
+<p>&quot;Your channels cannot carry that. The first two layers, perhaps, in localized regions. The third would tear you apart from the inside. Your body would become a bomb.&quot; She lowered the scope and stood very still. &quot;Unless.&quot;</p>
+<p>Back to the board. Between each layer she drew a gate.</p>
+<p>&quot;Rate limiters, encoded into the algorithm itself. Each layer activates only when the previous one is completely stable, so the amplification climbs in controlled stages instead of cascading at once. Your body adapts to each threshold before the next engages. And the algorithm needs an anchor, a foundational frequency every cell can reference as a baseline. Without it, the groups drift out of synchronization. That is minor at first and catastrophic within minutes, because your clusters would tear themselves apart amplifying conflicting signals.&quot;</p>
+<p>She faced me with her arms folded and her black eyes burning.</p>
+<p>&quot;The theory is sound. More than sound. It is brilliant and terrifying in equal measure. But one error propagates recursively. One flaw becomes a million flaws.&quot; She pulled a second chair to the bench and wiped the tablet clean. &quot;So. Design it with me.&quot;</p>
+<p>I closed my eyes and turned inward, and I assessed it the way I&#x27;d once worked through a problem set, methodically.</p>
+<p>The drake bone grafts were already scattered through my skeleton: fourteen major sites, dense, mana-conductive, each one quietly stabilizing the clusters around it.</p>
+<p>&quot;Fourteen anchors,&quot; I said, opening my eyes. &quot;One at every major graft site. They already behave like stabilization nodes. We encode the reference frequency directly into them. Every group checks against its nearest anchor before it amplifies, so drift gets corrected passively, by proximity.&quot;</p>
+<p>Her stylus moved fast. &quot;The grafts are ideal. Dense enough to hold a complex pattern without degrading. Evenly distributed. Continue.&quot;</p>
+<p>&quot;A hundred cells per group is too aggressive to start. Fifty. Smaller groups synchronize faster and run cooler during the handshake. We expand once the first layer stabilizes.&quot;</p>
+<p>&quot;Layers. How many.&quot;</p>
+<p>&quot;Three, to begin. Layer one, fifty-cell groups amplifying individually. I can handle that comfortably. Layer two, groups amplifying groups, fifty times fifty, two and a half thousand times base in localized regions. With the anchors correcting drift, my channels hold.&quot; I paused. I&#x27;d felt the limits during the Harren bombardment, and the clone had blown straight through them. &quot;The third layer is where it breaks. A hundred and twenty-five thousand times base. My channels would rupture in seconds, unless the algorithm rebuilds them in real time. The clusters already evolve on their own; you just confirmed it. So we encode channel reinforcement into the amplification itself. Each layer doesn&#x27;t only increase output. It rebuilds the road for the next one.&quot;</p>
+<p>Her chair scraped back hard. Her whole form flickered three times, nearly to invisibility.</p>
+<p>&quot;Self-reinforcing recursive amplification,&quot; she whispered. &quot;It does not just scale the power. It scales the capacity to survive the power. Each layer makes the next one possible.&quot; She paced, her white hair drifting around her like agitated smoke. &quot;But the consumption. Three layers would empty you in under a minute. You regenerate thirty. The demand would exceed ten thousand per minute, conservatively. You need an ambient siphon written into every cell, so each group pulls from the environment while it amplifies, so the groups feed themselves...&quot; She was already drawing spiraling arrows into the clusters. &quot;In a place this rich, it could offset sixty or seventy percent. Elsewhere, you would burn faster. Sustainable. Barely.&quot;</p>
+<p>She pulled on her surgical gloves.</p>
+<p>&quot;This will hurt considerably.&quot;</p>
+<p>&quot;Remember what we did to my blood,&quot; I said.</p>
+<p>Her hand stopped halfway into the second glove.</p>
+<p>&quot;I passively generate mana because it <em>is</em> my blood now. Mana DNA. So the amplification doesn&#x27;t just apply to output. It applies to the mana-blood itself. Amplify the blood recursively, and you amplify the thing that regenerates.&quot;</p>
+<p>The stylus slipped from her fingers and clattered on the stone. She didn&#x27;t pick it up.</p>
+<p>&quot;Wait,&quot; she said quietly.</p>
+<p>She turned back to the board, and very slowly she erased every siphon pathway she had drawn.</p>
+<p>&quot;I miscalculated.&quot; Her voice was barely audible. &quot;I treated your mana pool as a reservoir, a tank that drains and refills. It is not a tank.&quot; She drew a circulatory loop and shaded every cell dark. &quot;Your blood is mana. Mana is your blood. Every cell is both a biological unit and a generator. You do not store mana. You <em>produce</em> it, continuously, as a byproduct of being alive.&quot; Her hand was shaking, slightly but visibly, as she drew the recursive groups over the loop. &quot;If we amplify those cells, we amplify their generative capacity itself. Layer one, fifty times base regeneration. Layer two, two and a half thousand. Layer three...&quot;</p>
+<p>She stopped writing and put both palms flat on the bench. Her form was flickering rapidly now, and it wasn&#x27;t agitation anymore. It was something deeper, closer to awe.</p>
+<p>&quot;Layer three means your blood regenerates a hundred and twenty-five thousand times faster than baseline. You would not merely sustain the amplification. You would overproduce. The loop feeds itself.&quot; She turned to me. &quot;Net-positive recursive amplification. Indefinitely.&quot;</p>
+<p>The cold room was silent apart from the hiss of the blue-green fire.</p>
+<p>She drew the second glove on, tight and methodical, putting her composure back together piece by piece. &quot;Which makes the anchors more critical, not less. Without fourteen reference frequencies holding it in check, net-positive recursion does not plateau. It accelerates. You would not run dry. You would <em>overflow.</em> Every cell in your body detonating at once.&quot;</p>
+<p>From a cabinet she took a long black needle. It was crystallized dark matter, hollow-cored, and its whole length was inscribed with runes too fine to read. It drank the lamplight instead of reflecting it. She laid it in a velvet tray beside thirteen more.</p>
+<p>&quot;I must reach each graft directly and inject the foundational frequency into the drake marrow. The marrow propagates the signal through the bone and into every cluster in range. Fourteen injections, each through the outer cortex of living Abyssal Drake bone, without fracturing the graft. Four minutes apiece. Nearly an hour of drilling into your skeleton.&quot; She looked at me flatly. &quot;Of all the pain I have inflicted on patients in three centuries of practice, this will be the worst. Sedation is impossible; your blood would metabolize it in seconds. And I need you conscious. If a frequency conflicts with your architecture, you are the only one who will feel it before it spreads.&quot; A pause. &quot;Each anchor must carry a slightly different harmonic variation. Fourteen identical signals would set up standing-wave interference. Fourteen harmonized variations make a stable field. I have never encoded living drake bone before.&quot;</p>
+<p>She waited for me to decide.</p>
+<p>&quot;It&#x27;s fine,&quot; I said.</p>
+<p>I closed my eyes and reached inward, toward the constellation of billions of points of light mapped across the dark of my body, and I sent them a signal. It wasn&#x27;t words. It was a frequency, a tone that rippled through the mana-blood like a stone dropped in still water.</p>
+<p><em>Safe. Cooperate. Yield.</em></p>
+<p>I felt them answer. The clusters softened their defensive posture. The autonomous cycles paused. The channel walls loosened a fraction. The whole architecture shifted out of its constant combat readiness into something quiet and receptive. My heart slowed.</p>
+<p>Sereth was watching the scope. &quot;Your reactive threshold just dropped forty percent,&quot; she murmured. &quot;Voluntarily.&quot; She set the scope down. &quot;Your cells trust you. I have never documented that in any subject.&quot;</p>
+<p>I lay back on the slab of polished black stone. Its channels hummed faintly, steadying me rather than binding me. She swung a second scope over my chest on an articulated arm.</p>
+<p>&quot;First site. Left clavicle.&quot;</p>
+<p>The needle slid through skin and muscle easily. My blood parted for it, recognizing the dark matter. Then it reached bone.</p>
+<p>The pain was immediate and absolute. It wasn&#x27;t sharp. It was deep and structural, a grinding vibration that filled my whole shoulder, pain that lived in the architecture of me. It was bone screaming at being bored into. She turned the needle slowly and steadily, a millimeter at a time. The cortex resisted, cracked microscopically, and yielded.</p>
+<p>&quot;Marrow. Injecting. Harmonic one of fourteen.&quot;</p>
+<p>Cold flowed into the bone. It was alien, but not painful. It spread through the marrow like ink in water, a resonant tone I had never felt before, and the cells nearby stopped what they were doing and turned toward it like flowers to the sun.</p>
+<p>&quot;Anchor one, stable. Thirteen remaining.&quot;</p>
+<p>The right clavicle came next. Then the scapulae, four minutes of grinding each. At the femurs she had to reposition me, and the needles went deeper there, into the densest bone in my body, and my vision went white. The cells rippled with defensive instinct, and I sent the calming frequency again, and they settled. Four ribs followed, and each injection shook my entire chest. I tasted copper. Then both radii. At the sternum she hesitated. One millimeter off would have put the needle into my mana-heart. She took six minutes instead of four, and her hands never shook.</p>
+<p>&quot;Fourteenth. Cervical vertebra.&quot; The base of my skull. &quot;Do not move,&quot; she whispered.</p>
+<p>The last harmonic locked into place.</p>
+<p>Fourteen frequencies bloomed into a single resonance field across my skeleton.</p>
+<p>I sat up, and it hit me all at once. The clavicles hummed a low baritone, and the femurs pulsed deep and slow. The ribs vibrated in quick mid-tones. The sternum throbbed steadily at the center like a second heartbeat. The cervical anchor rang high and clear, threading through my nerves like a tuning fork pressed to my spine. Every cluster in my body reoriented at once and locked onto its nearest anchor like a compass needle finding north. The chaotic hum that had been my constant companion since integration smoothed and flattened into structure.</p>
+<p>It was clean.</p>
+<p>I flexed my hand, and the response was instant, with zero latency and no drift. Before, the constellation inside me had been a swarm, brilliant but chaotic. Now it was a lattice. Every cell knew exactly where it sat and who its neighbors were.</p>
+<p>The foundation was laid.</p>
+<p>Sereth held the scope over my sternum for a long moment. &quot;Channel stability up thirty-one percent across all major pathways. Micro-drift near zero. Passive regeneration from the structural improvements alone...&quot; She recalibrated and read it again. &quot;Forty-four per minute. Up from thirty.&quot;</p>
+<p>She began cleaning the needles. My blood, dark and faintly shimmering, coated every one of them.</p>
+<p>&quot;The anchors hold. The field is stable. You are ready for the first layer, in no less than twelve hours. The marrow must finish propagating, and amplifying a partial field risks local desynchronization.&quot; She glanced back over her shoulder. &quot;Go. Rest. Eat. And do not attempt any recursive patterns on your own. I will know if you do, because I will be cleaning pieces of you off my ceiling.&quot;</p>
+<p>There was the faintest ghost of humor in it, almost too faint to see.</p>
+<p>I laughed anyway, thanked her, and went for a walk.</p>
+<hr class="scene-break">
+<p>For the first time, I felt my cells drinking in the castle&#x27;s ambient mana in an organized way, pulling it through structured channels instead of soaking it up at random. The ogre sentries at the gate glanced down, recognized me, and stepped aside. One of them simply looked away.</p>
+<p>Outside, beneath the red sky, a settlement sprawled at the foot of the castle hill. I&#x27;d seen it from my balcony and never walked through it. It was built of crude stone houses, hide lean-tos, dwellings hollowed out of rock, and a few surprisingly well-made timber halls. Smoke rose from cook fires, and it smelled of roasting meat with something acidic and alchemical underneath.</p>
+<p>There were monsters everywhere. Goblins squatted around fire pits in threes and fours, arguing over a salvage pile near the eastern ridge, and I understood every word. An orc blacksmith nearly seven feet tall, with iron-capped tusks and a leather apron across her shoulders, hammered a curved blade in a shower of sparks. A pack of kobolds hurried past with baskets of glowing mushrooms. They froze when they caught my scent, flattened themselves against the ground, and then scrambled away.</p>
+<p>Word had spread.</p>
+<p>The road, if it could be called one, led to a market in a central clearing: stalls of bone and hide selling monster parts, crude weapons, herb bundles, and jars of liquids in colors that shouldn&#x27;t exist. Imp children no taller than my knee chased one another between the stalls, shrieking with laughter, until a larger imp caught one by the tail and hauled it back.</p>
+<p>It was rough and crude and precarious, but it was life.</p>
+<p>A woman behind one of the larger stalls caught my eye. She was nearly six and a half feet tall, with deep indigo skin and four arms. Two were working a mortar and pestle, and two were arranging clay jars. Her hair was white and cropped short, small black horns curved from her temples, and her eyes were sharp, appraising amber. She wore a leather vest cut to fit four shoulders and a necklace of small animal teeth.</p>
+<p>All four hands paused at once.</p>
+<p>&quot;So,&quot; she said, in a low, smooth voice with an accent I couldn&#x27;t place. &quot;The Apostle walks among us.&quot; One nostril flared. &quot;You smell of drake marrow and surgical mana. Fresh. Sereth had you on her table.&quot; A knowing half-smile. &quot;I am Ishvane. Apothecary. Alchemist. Purveyor of the things that keep this kingdom&#x27;s soldiers breathing long enough to die on the battlefield instead of in their beds. Browsing? Or stretching your legs?&quot;</p>
+<p>&quot;A little of both.&quot;</p>
+<p>She chuckled, and the upper hands went back to grinding. &quot;An honest answer. Most officers bark orders and demand supplies. You walk through like you&#x27;re seeing the place for the first time.&quot; Then the grinding stopped, and all four arms went still. &quot;Harren. Word came back fast. Thirteen minutes. One attacker.&quot; Her eyes narrowed, measuring me the way a woman measures threats for a living. &quot;That was you.&quot;</p>
+<p>It wasn&#x27;t a question.</p>
+<p>At a nearby fire pit, five battle-scarred orcs had gone quiet and were openly staring. One of them stood up. He was eight feet tall, his dark green skin weathered like old bark, with dented iron pauldrons over bare shoulders and a belt hung with human swords. His left arm ended below the elbow in a stump wrapped in old leather. He walked over, and the ground shook under each step, and he stopped three feet from me.</p>
+<p>&quot;Vulkar,&quot; he said, in a voice like gravel dragged over iron. &quot;Siege battalion. Third front.&quot;</p>
+<p>He raised the stump.</p>
+<p>&quot;Harren&#x27;s garrison did this, back before the Empire made a depot of it. Eight months ago. A blessed lance through the elbow. Took forty of my soldiers with it.&quot; The trophy swords clinked on his belt. &quot;Command said it was too fortified. Said we would go around it. Let it rot.&quot;</p>
+<p>He looked at me for a long, heavy moment.</p>
+<p>Then he brought his remaining fist against his chest, once, solidly. Behind him, the four other orcs rose as one and did the same. Five fists struck five chests, a sound like a war drum hit once.</p>
+<p>Vulkar said nothing else. He walked back to the fire, sat down, and went on eating.</p>
+<p>Ishvane&#x27;s brows had risen. &quot;Well. That does not happen often. Vulkar does not acknowledge anyone below Shiryeon&#x27;s rank. Usually he grunts and stares until people leave.&quot; She reached under the counter and set down a small clay bottle sealed in black wax stamped with a four-armed sigil. &quot;Mana-restoration tonic. Concentrated. Distilled Abyssal mushroom and powdered deep-cavern crystal. One sip restores about two hundred. Not the watered-down rations I sell the infantry.&quot; She pushed it toward me. &quot;A gift, from one specialist to another. And, selfishly, I want to know what it does in whatever Sereth has turned your blood into. You&#x27;d be the first mana-blood hybrid to drink my work.&quot;</p>
+<p>I pocketed it. &quot;Thank you. I&#x27;ll look around more another time. Good day.&quot;</p>
+<p>A lower hand lifted in a lazy wave, and the upper pair never broke rhythm.</p>
+<p>&quot;Good day, Apostle. Come back when you&#x27;ve drunk it. I want data.&quot;</p>
+<hr class="scene-break">
+<p>Back in my quarters, I set the tonic on the desk and lay down. The black wax caught the torchlight. My whole skeleton ached like one deep bruise, fourteen surgical violations that my blood was already sealing. The anchors pulsed quietly, embedding themselves deeper into the marrow with every minute that passed.</p>
+<p>Forty-four a minute, ticking steadily.</p>
+<p>Sleep came deep, black, and dreamless, but the clusters didn&#x27;t stop. They never did. This time, though, their nightly evolution had structure to follow. They ran along the resonance field like rivers following the slope of the ground, smoothing inefficiencies and folding redundant pathways together. Four hours in, propagation hit sixty percent. At eight hours, eighty-seven. The reference frequencies spread through the drake marrow like roots through soil, reaching cells that had never known structure and giving them direction.</p>
+<p>At twelve hours, I opened my eyes.</p>
+<p>Every one of the billions of clusters in my body was locked to the field, synchronized and waiting. My regeneration had crept up to forty-eight in my sleep.</p>
+<p>Every cell in my body was a tuned instrument waiting for the first note.</p>
+</article>
+<p class="chap-endmark" aria-hidden="true">✦</p>
+<nav class="chapnav chapnav-bottom" aria-label="Chapter navigation">
+  <a class="btn btn-ghost" href="chapter-09.html" rel="prev" data-nav="prev"><span aria-hidden="true">‹</span> <span class="nav-lbl">Chapter 9</span></a>
+  <a class="btn btn-ghost toc-link" href="../index.html#contents">Contents</a>
+  <a class="btn btn-accent" href="chapter-11.html" rel="next" data-nav="next"><span class="nav-lbl">Chapter 11</span> <span aria-hidden="true">›</span></a>
+</nav>
+<p class="chap-discuss"><a href="https://discord.gg/fTYcKp8U3" rel="noopener noreferrer" target="_blank">Talk about this chapter in the Eldritch Court</a></p>
+</main>
+<footer class="sitefoot">
+  <p class="foot-title">Demon Lord's Apostle <span class="sep">·</span> Volume 1: The Stolen Hero</p>
+  <p>© 2026 Lucan Dray. All rights reserved. <span class="sep">·</span> 18+</p>
+  <p><a href="../index.html#contents">Contents</a> <span class="sep">·</span> <a href="../characters.html">Characters</a> <span class="sep">·</span> <a href="../guardians.html">Guardians</a> <span class="sep">·</span> <a href="https://discord.gg/fTYcKp8U3" rel="noopener noreferrer" target="_blank">The Eldritch Court</a></p>
+  <p class="foot-small">No cookies, no tracking. Your reading settings and place stay on this device.</p>
+</footer>
+<script src="../assets/js/reader.js"></script>
+</body>
+</html>
